@@ -15,32 +15,27 @@ node 'd-web02.meema.lan' {
     class { 'php': }
     class {'::apache::mod::php':}
     
+
     ##############################################################
-    # vhost: yii-tutorial.meema.lan
+    # vhost: laravel-tutorial.meema.lan
     ##############################################################
     
-    # define some directories and files
-    $vhost_name = "yii-tutorial.meema.lan"
-    $vhost_root = "/var/www/${vhost_name}"
-    $vhost_log_root = "/var/www/${vhost_name}/logs"
-
-
     # setting up vhost root directory and vhost log root
-    file { [$vhost_root, $vhost_log_root]:
+    file { ["/var/www/laravel-tutorial.meema.lan", "/var/www/laravel-tutorial.meema.lan/logs"]:
         ensure => 'directory',
         owner  => 'apache',
         group  => 'apache',
     }
 
-    apache::vhost { $vhost_name:
+    apache::vhost { "laravel-tutorial.meema.lan":
         port            => '80',
-        docroot         => "${vhost_root}/docs",
-        logroot         => $vhost_log_root,
+        docroot         => "/var/www/laravel-tutorial.meema.lan/docs",
+        logroot         => "/var/www/laravel-tutorial.meema.lan/logs",
         suphp_engine    => 'off',
     }
 
     # create index.php to test php availability
-    file { "${vhost_root}/docs/index.php":
+    file { "/var/www/laravel-tutorial.meema.lan/docs/index.php":
         ensure => 'present',
         content => "<?php phpinfo(); ?>",
     }
