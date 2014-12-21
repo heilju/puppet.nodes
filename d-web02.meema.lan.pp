@@ -5,6 +5,10 @@ node 'd-web02.meema.lan' {
         ensure => 'absent',
     }
     
+    # install php mcrypt library
+    package { 'php-mcrypt':
+        ensure => 'present',
+    }
     
     ##############################################################
     # install base modules/packages
@@ -21,7 +25,7 @@ node 'd-web02.meema.lan' {
     ##############################################################
     
     # setting up vhost root directory and vhost log root
-    file { ["/var/www/laravel-tutorial.meema.lan", "/var/www/laravel-tutorial.meema.lan/logs"]:
+    file { ["/var/www/laravel-tutorial.meema.lan", "/var/www/laravel-tutorial.meema.lan/docs", "/var/www/laravel-tutorial.meema.lan/logs"]:
         ensure => 'directory',
         owner  => 'apache',
         group  => 'apache',
@@ -29,7 +33,7 @@ node 'd-web02.meema.lan' {
 
     apache::vhost { "laravel-tutorial.meema.lan":
         port            => '80',
-        docroot         => "/var/www/laravel-tutorial.meema.lan/docs",
+        docroot         => "/var/www/laravel-tutorial.meema.lan/docs/public",
         logroot         => "/var/www/laravel-tutorial.meema.lan/logs",
         suphp_engine    => 'off',
     }
