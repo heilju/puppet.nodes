@@ -6,7 +6,7 @@ node 'd-web02.meema.lan' {
     }
     
     # install some libraries
-    package { ['php-mcrypt', 'php-pdo', 'php-mysql', 'yum-utils']:
+    package { ['php-mcrypt', 'php-pdo', 'php-mysql', 'php-xml', 'yum-utils']:
         ensure => 'present',
     }
 
