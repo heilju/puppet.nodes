@@ -25,16 +25,16 @@ node 'd-web02.meema.lan' {
     ##############################################################
     
     # setting up vhost root directory and vhost log root
-    file { ["/var/www/sunpower.meema.lan", "/var/www/sunpower.meema.lan/docs", "/var/www/sunpower.meema.lan/logs"]:
+    file { ["/var/www/d-sunpower.meema.lan", "/var/www/d-sunpower.meema.lan/docs", "/var/www/d-sunpower.meema.lan/logs"]:
         ensure => 'directory',
         owner  => 'apache',
         group  => 'apache',
     }
 
-    apache::vhost { "sunpower.meema.lan":
+    apache::vhost { "d-sunpower.meema.lan":
         port            => '80',
-        docroot         => "/var/www/sunpower.meema.lan/docs/public",
-        logroot         => "/var/www/sunpower.meema.lan/logs",
+        docroot         => "/var/www/d-sunpower.meema.lan/docs/public",
+        logroot         => "/var/www/d-sunpower.meema.lan/logs",
         override        => ['All'],
         suphp_engine    => 'off',
     }
