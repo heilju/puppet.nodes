@@ -37,6 +37,7 @@ node 'd-web02.meema.lan' {
         logroot         => "/var/www/d-sunpower.meema.lan/logs",
         override        => ['All'],
         suphp_engine    => 'off',
+        serveraliases   => ['sunpower.meema.org'],
     }
 
     ##############################################################
